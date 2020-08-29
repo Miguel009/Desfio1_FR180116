@@ -1,0 +1,42 @@
+.ng-valid[required]{
+    border-left: 5px solid rgba(32, 77, 32,0.623);
+}
+
+.ng-invalid[required]:not(form){
+    border-left: 5px solid rgb(148, 27, 27);
+}
+
+.btn{
+    margin: 4px
+}
+.tab{
+    margin-top: 2rem;
+}
+.conte{
+    margin-top: 2rem;
+    padding: 2em;
+    background: #eeeeee;
+    box-shadow: 0px 0px 30px black;
+    border-radius: 1.5%;
+}
+
+.btcolor{
+    background: #c72c41;
+    color: white;
+}
+
+.btcolor:hover{
+    background: #ee4540;
+}
+
+.btcolor2{
+    background: #2d132c;
+    color: white;
+}
+
+.btcolor2:hover{
+    background: #801336;
+}
+.btcolor2:disabled{
+    background: #1f0e1e;
+}

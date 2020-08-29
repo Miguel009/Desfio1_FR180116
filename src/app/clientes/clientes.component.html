@@ -1,0 +1,83 @@
+<div [hidden]="enviar" class="conte">
+    <h2 class="text-center">Formulario <span class="text-danger">del Cliente</span></h2>
+<form #clienteform="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="nombre">Nombre <span class="text-danger">Cliente</span></label>
+        <input type="text" class="form-control"  pattern="[A-Za-zñáéíóúÁÉÍÓÚ ]+" id="nombre" required [(ngModel)]="cliente.nombre_cliente" name="nombre" #name="ngModel">
+        <div [hidden]="name.valid || name.pristine"  class="alert alert-danger">
+            Nombre valido es requerido
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="dui">Dui <span class="text-danger">Cliente</span></label>
+        <input type="text" class="form-control" pattern="[0-9]{8}-[0-9]{1}" id="dui" required [(ngModel)]="cliente.DUI" name="dui" #dui="ngModel">
+        <div [hidden]="dui.valid || dui.pristine"  class="alert alert-danger">
+            Dui valido es requerido
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="mascota">Nombre <span class="text-danger">de Mascota</span></label>
+        <input type="text" class="form-control" pattern="[A-Za-z0-9ñáéíóúÁÉÍÓÚ ]+"  id="mascota" required [(ngModel)]="cliente.nombre_mascota" name="nombre_mascota" #pet="ngModel">
+        <div [hidden]="pet.valid || pet.pristine"  class="alert alert-danger">
+            Nombre de Mascota valido es requerido
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="tratamiento">Tratam<span class="text-danger">iento</span></label>
+        <input type="text" class="form-control" pattern="[A-Za-z0-9ñáéíóúÁÉÍÓÚ ]+" id="tratamiento" required [(ngModel)]="cliente.tratamiento" name="tratamiento" #trat="ngModel">
+        <div [hidden]="trat.valid || trat.pristine"  class="alert alert-danger">
+            Tratamiento valido es requerido
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="medicina">Medica<span class="text-danger">mentos</span></label>
+        <input type="text" class="form-control" pattern="[A-Za-z0-9ñáéíóúÁÉÍÓÚ ]+" id="medicina" required [(ngModel)]="cliente.medicamento" name="medicamente" #medi="ngModel">
+        <div [hidden]="medi.valid || medi.pristine"  class="alert alert-danger">
+            Medicamentos valido es requerido
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="costo">Cos<span class="text-danger">to</span></label>
+        <input type="number" class="form-control" id="costo" required [(ngModel)]="cliente.Costo" name="costo" #cost="ngModel" min="1">
+        <div [hidden]="cost.valid || cost.pristine"  class="alert alert-danger">
+            Costo es requerido
+        </div>
+        <div class="alert alert-danger" [hidden]="cliente.Costo>0">
+            Numero Negativo o 0
+        </div>
+    </div>
+    <button type="submit" class="btn btcolor2"
+    [disabled]="!clienteform.form.valid || cliente.Costo<=0 || cliente.Costo==null">Guardar</button> 
+    <button class="btn btcolor" (click)="enviar=true">Ver Datos</button>
+</form>
+</div>
+<div [hidden]="!enviar" class="text-center text-white tab">
+    <h2>Informacion <span class="text-danger">de Clientes</span></h2>
+    <div class="table-responsive">
+        <table class="table  table-striped table-dark" >
+            <thead>
+              <tr>
+                <th scope="col">DU<span class="text-danger">I</span></th>
+                <th scope="col">Nom<span class="text-danger">bre</span></th>
+                <th scope="col">Masc<span class="text-danger">ota</span></th>
+                <th scope="col">tratam<span class="text-danger">iento</span></th>
+                <th scope="col">medica<span class="text-danger">mento</span></th>
+                <th scope="col">Cos<span class="text-danger">to</span></th>
+                <th scope="col">Desc<span class="text-danger">uento</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let clientes of registro">
+                <th scope="row">{{clientes.DUI}}</th>
+                <td>{{clientes.nombre_cliente}}</td>
+                <td>{{clientes.nombre_mascota}}</td>
+                <td>{{clientes.tratamiento}}</td>
+                <td>{{clientes.medicamento}}</td>
+                <td>${{clientes.Costo}}</td>
+                <td>{{clientes.Descuento}}%</td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+    <button class="btn btcolor" (click)="enviar=false">Volver</button>
+</div>
