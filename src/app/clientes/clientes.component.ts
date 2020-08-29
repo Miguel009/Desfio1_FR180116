@@ -39,7 +39,7 @@ export class ClientesComponent implements OnInit {
         this.cliente.Costo=this.cliente.Costo*0.95;
     }
     else 
-    if (this.contador>=4) {
+    if (this.contador>4) {
       this.cliente.Descuento = 10;
       this.cliente.Costo= this.cliente.Costo*0.90;
     }
